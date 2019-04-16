@@ -13,7 +13,7 @@
     <title>基于卷积神经网络的图像放大</title>
 
     <!-- CSS -->
-   
+
 
     <!-- Below are the files inported for implement material design  -->
     <link rel="stylesheet" href="./mdl/material.min.css">
@@ -30,51 +30,151 @@
 
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
-            <div class="mdl-layout__header-row portfolio-logo-row">
-                <span class="mdl-layout__title">
-                    <div class="portfolio-logo"></div>
-                    <span class="mdl-layout__title">Simple portfolio website</span>
-                </span>
-            </div>
-            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
-                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link" href="index.html">Portfolio</a>
-                    <a class="mdl-navigation__link  is-active" href="blog.html">Blog</a>
-                    <a class="mdl-navigation__link" href="about.html">About</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+    <!-- Nav bar -->
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">卷积神经网络图像放大项目  SR.Web</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+
+            <!-- not necessary -->
+            <!-- Navigation
+            <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">注册</a>
                 </nav>
+
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">登陆</a>
+            </nav> -->
+
             </div>
         </header>
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
-                <a class="mdl-navigation__link" href="blog.html">Blog</a>
-                <a class="mdl-navigation__link" href="about.html">About</a>
-                <a class="mdl-navigation__link" href="contact.html">Contact</a>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">用户名</span>
+            <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">画廊</a>
+            <a class="mdl-navigation__link" href="">关于作者</a>
+            <a class="mdl-navigation__link" href="">致谢</a>
+            <a class="mdl-navigation__link" href="">账户信息</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
-            <div class="mdl-grid portfolio-max-width">
-                
-             
-             
-               <!-- This place is reserved for Meteor-->
-               
-                
-            </div>
-            <footer class="mdl-mini-footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">合肥工业大学 · 15级计算机2班 孙天成</div>
+        </main>
+    </div>
+
+
+
+
+    <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+        <main class="mdl-layout__content">
+            <div class="demo-blog__posts mdl-grid">
+                <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
+
+                    <!-- The entery point for explantion page -->
+                    <div class="mdl-card__media mdl-color-text--grey-50">
+                        <h3><a href="entry.html">SR.Web 项目是怎样工作的？</a></h3>
+                    </div>
+
+                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                        <div class="minilogo"></div>
+                        <div>
+                            <strong>The Newist</strong>
+                            <span>2 days ago</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mdl-mini-footer__right-section">
+                <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
+                    <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent">
+                        <i class="material-icons mdl-color-text--white" role="presentation">add</i>
+                        <span class="visuallyhidden">add</span>
+                    </button>
+                    <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+                        <img src="images/logo.png"> +1,337
+                    </div>
+                    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+                        <div>
+                            <strong>图片上传</strong>
+                        </div>
+                        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
+                            <li class="mdl-menu__item">About</li>
+                            <li class="mdl-menu__item">Message</li>
+                            <li class="mdl-menu__item">Favorite</li>
+                            <li class="mdl-menu__item">Search</li>
+                        </ul>
+                        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                            <i class="material-icons" role="presentation">more_vert</i>
+                            <span class="visuallyhidden">show menu</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- place reserved for  meteor's template system-->
+                <!-- {{> picCardList}} -->
+
+                <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__media mdl-color-text--grey-50">
+                        <h3><a href="entry.html">On the road again</a></h3>
+                    </div>
+                    <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+                        Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur
+                        ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+                    </div>
+                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                        <div class="minilogo"></div>
+                        <div>
+                            <strong>The Newist</strong>
+                            <span>2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-card amazing mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__title mdl-color-text--grey-50">
+                        <h3 class="quote"><a href="entry.html">I couldn’t take any pictures but this was an amazing thing…</a></h3>
+                    </div>
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                        Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur
+                        ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+                    </div>
+                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                        <div class="minilogo"></div>
+                        <div>
+                            <strong>The Newist</strong>
+                            <span>2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+               
+
+                <!-- Next page button -->
+                <nav class="demo-nav mdl-cell mdl-cell--12-col">
+                    <div class="section-spacer"></div>
+                    <a href="entry.html" class="demo-nav__button" title="show more">
+                        More
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                            <i class="material-icons" role="presentation">arrow_forward</i>
+                        </button>
+                    </a>
+                </nav>
+            </div>
+
+
+            <!-- FIXME:: the GitHub button doesn't work! -->
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer--left-section">
                     <ul class="mdl-mini-footer__link-list">
-                        <li><a href="#">致谢</a></li>
-                        <li><a href="#">Contact me</a></li>
+                        <li><a href="#">合肥工业大学 · 计算机与信息学院 孙天成</a></li>
                     </ul>
                 </div>
+
+                <div class="mdl-mini-footer--right-section">
+                    <a href="https://github.com/Tygen/SR.Web" class="social-btn social-btn__github" role="button" title="GitHub"></a>
+                </div>
             </footer>
+
         </main>
+        <div class="mdl-layout__obfuscator"></div>
     </div>
 </body>
