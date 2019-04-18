@@ -1,0 +1,58 @@
+<!-- This file is the default layout of my SR.Web project -->
+<!-- Author: Tiancheng Sun @ GMU & HFUT-->
+<!-- Contact me: tsun5@masonlive.gmu.edu -->
+
+<template name="layout">
+    <!-- Nav bar -->
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">卷积神经网络图像放大项目 SR.Web</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+
+                <!-- not necessary -->
+                <!-- Navigation
+                        <nav class="mdl-navigation">
+                                <a class="mdl-navigation__link" href="">注册</a>
+                            </nav>
+            
+                        <nav class="mdl-navigation">
+                            <a class="mdl-navigation__link" href="">登陆</a>
+                        </nav> -->
+
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">用户名</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">画廊</a>
+                <a class="mdl-navigation__link" href="">关于作者</a>
+                <a class="mdl-navigation__link" href="">致谢</a>
+                <a class="mdl-navigation__link" href="">账户信息</a>
+            </nav>
+        </div>
+
+        <main class="mdl-layout__content">
+        </main>
+    </div>
+
+    <!-- yield is the entry point for Pic card, more infor is writen in router.js -->
+    {{> yield}}
+
+    <!-- Footer -->
+    <!-- FIXME:: the GitHub button doesn't work! -->
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer--left-section">
+            <ul class="mdl-mini-footer__link-list">
+                <li><a href="#">合肥工业大学 · 计算机与信息学院 孙天成</a></li>
+            </ul>
+        </div>
+
+        <div class="mdl-mini-footer--right-section">
+            <a href="https://github.com/Tygen/SR.Web" class="social-btn social-btn__github" role="button" title="GitHub"></a>
+        </div>
+    </footer>
+</template>
