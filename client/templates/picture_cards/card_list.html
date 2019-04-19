@@ -2,7 +2,7 @@
     <!-- be awared that there are two tags regarting the page structure has moved 
     to layout.html in order to help the footer obtain a correct location -->
     <div class="demo-blog__posts mdl-grid">
-        <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
+        <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col mdl-shadow--4dp">
 
             <!-- The entery point for explantion page -->
             <div class="mdl-card__media mdl-color-text--grey-50">
@@ -17,14 +17,29 @@
                 </div>
             </div>
         </div>
-        <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
-            <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent">
-                <i class="material-icons mdl-color-text--white" role="presentation">add</i>
-                <span class="visuallyhidden">add</span>
-            </button>
+
+
+        <!-- The upload card -->
+        <!-- current under heady construction, be mind of any changes here! -->
+        <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop mdl-shadow--16dp">
+
+            <!-- the select button -->
+            <label class="file_input">
+                    <div class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button-fab mdl-js-ripple-effect mdl-button--colored">
+                        <i class="material-icons">add</i>
+                        <input style="display:none" id="file_input_file" class="none" type="file" />
+                    </div>
+            </label>
+
             <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
-                <img src="images/upload.png"> +1,337
+                <!-- TODO:remember change this image to the finish logo once get the uploaded file's name -->
+                <img src="images/upload.png"> 
+                <input style="border: none;" type="text" id="fileuploadurl" readonly placeholder="Maximum file size is 1GB">
+                
+                <!-- TODO:replace the +1337 with the update times -->
+                
             </div>
+
             <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
                 <div>
                     <strong>图片上传</strong>

@@ -198,7 +198,9 @@ display: flex;
     -ms-flex-align: center;
         align-items: center;
 }
-.demo-blog .something-else > button {
+
+/* used for locate the upload button */
+.demo-blog .something-else > .file_input {
 position: absolute;
 top: 0;
 right: 28px;
@@ -211,11 +213,14 @@ font-weight: 500;
 border-top-left-radius: 2px;
 border-top-right-radius: 2px;
 }
+
+/* upload card's logo */
 .demo-blog .something-else .mdl-card__media img {
-width: 64px;
-height: 64px;
+width: 128px;
+height: 128px;
 margin-bottom: 10px;
 }
+
 .demo-blog .something-else .mdl-card__supporting-text {
 background-color: #F5F5F5;
 border-bottom-left-radius: 2px;
@@ -507,3 +512,5 @@ box-sizing: border-box;
      your background is light. */
   color: white;
 }
+
+/* CSS for the upload card loacted on the cardList page */
