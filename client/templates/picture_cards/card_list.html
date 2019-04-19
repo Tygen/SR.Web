@@ -24,20 +24,27 @@
         <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop mdl-shadow--16dp">
 
             <!-- the select button -->
-            <label class="file_input">
-                    <div class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button-fab mdl-js-ripple-effect mdl-button--colored">
-                        <i class="material-icons">add</i>
-                        <input style="display:none" id="file_input_file" class="none" type="file" />
-                    </div>
-            </label>
+            <div class="file_input">
+                <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <i class="material-icons">add</i>
+                    <input id="file_input_file" class="none" style="display: none" type="file" />
+                </label>
+            </div>
 
-            <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+            <div class="mdl-card__media mdl-color--white mdl-color-text--blue-A700">
                 <!-- TODO:remember change this image to the finish logo once get the uploaded file's name -->
-                <img src="images/upload.png"> 
-                <input style="border: none;" type="text" id="fileuploadurl" readonly placeholder="Maximum file size is 1GB">
+                <div id="upload_icon">
+                    <img src="images/upload.png">
+                </div>
                 
+                <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+                    <!-- yellow 900 is the color I used here, more info: http://blog.jonathanargentiero.com/material-design-lite-color-classes-list/ -->
+                    <!-- placeholder="                      图片名" this implementation is way too stupid so I give up-->
+                    <input class="file_input_text mdl-textfield__input mdl-color-text--yellow-900 " type="text"  disabled readonly id="file_input_text" />
+                    <label class="mdl-textfield__label" for="file_input_text"></label>
+                </div>
                 <!-- TODO:replace the +1337 with the update times -->
-                
+
             </div>
 
             <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
@@ -112,5 +119,45 @@
             </a>
         </nav>
     </div>
+
+    <!-- FIXME:Due to unknow reason, these script doesn't work within the card_list.js file, so I transfer them to here  -->
+    <!-- Very likely some issues within the meteor -->
+    <script type="text/javascript">
+        var fileInputTextDiv = document.getElementById('file_input_text_div');
+        var fileInput = document.getElementById('file_input_file');
+        var fileInputText = document.getElementById('file_input_text');
+
+        fileInput.addEventListener('change', changeInputText);
+        fileInput.addEventListener('change', changeState);
+
+        function changeInputText() {
+            var str = fileInput.value;
+            var i;
+            if (str.lastIndexOf('\\')) {
+                i = str.lastIndexOf('\\') + 1;
+            } else if (str.lastIndexOf('/')) {
+                i = str.lastIndexOf('/') + 1;
+            }
+            fileInputText.value = str.slice(i, str.length);
+        }
+
+        function changeState() {
+            if (fileInputText.value.length != 0) {
+                if (!fileInputTextDiv.classList.contains("is-focused")) {
+                    fileInputTextDiv.classList.add('is-focused');
+                }
+            } else {
+                if (fileInputTextDiv.classList.contains("is-focused")) {
+                    fileInputTextDiv.classList.remove('is-focused');
+                }
+            }
+        }
+
+     
+        document.getElementById("file_input_file").onchange = function () {
+            document.getElementById("upload_icon").innerHTML="<img src=\"images/all_done.png\">";
+        };
+        
+    </script>
 
 </template>
