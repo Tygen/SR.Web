@@ -27,7 +27,7 @@
             <div class="file_input">
                 <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                     <i class="material-icons">add</i>
-                    <input id="file_input_file" class="none" style="display: none" type="file" />
+                    <input id="file_input_file" class="none" style="display: none" type="file" accept="image/*" />
                 </label>
             </div>
 
@@ -36,11 +36,12 @@
                 <div id="upload_icon">
                     <img src="images/upload.png">
                 </div>
-                
+
                 <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
                     <!-- yellow 900 is the color I used here, more info: http://blog.jonathanargentiero.com/material-design-lite-color-classes-list/ -->
                     <!-- placeholder="                      图片名" this implementation is way too stupid so I give up-->
-                    <input class="file_input_text mdl-textfield__input mdl-color-text--yellow-900 " type="text"  disabled readonly id="file_input_text" />
+                    <input class="file_input_text mdl-textfield__input mdl-color-text--yellow-900 " type="text" disabled readonly id="file_input_text"
+                    />
                     <label class="mdl-textfield__label" for="file_input_text"></label>
                 </div>
                 <!-- TODO:replace the +1337 with the update times -->
@@ -48,19 +49,16 @@
             </div>
 
             <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-                <div>
-                    <strong>图片上传</strong>
+                <div id="upload_text">
+                    <strong> </strong>
                 </div>
-                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
-                    <li class="mdl-menu__item">About</li>
-                    <li class="mdl-menu__item">Message</li>
-                    <li class="mdl-menu__item">Favorite</li>
-                    <li class="mdl-menu__item">Search</li>
-                </ul>
-                <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                    <i class="material-icons" role="presentation">more_vert</i>
-                    <span class="visuallyhidden">show menu</span>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled id="enlarge_button">
+                    <div id="enlarge_button_text">
+                        等待图片
+                    </div>
                 </button>
+
             </div>
         </div>
 
@@ -118,11 +116,49 @@
                 </button>
             </a>
         </nav>
+
+
     </div>
+
+    <!-- dialog, use for hold enlarge parameters  -->
+    <!-- Be aware that the dialog compoent must be placed directly under the outest tag, otherwise it would not be placed at the center of screen -->
+    <dialog id="dialog" class="mdl-dialog">
+        <h3 class="mdl-dialog__title">放大参数</h3>
+
+        <div class="mdl-dialog__content">
+            <p>
+                针对不同的放大风格我们采用了不同的卷积神经网络设计，更多信息请参见这里<br>
+                过高的放大倍数可能带来不可避免的图像失真，请根据图像自身情况选择合适的放大倍数
+            </p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button">Close</button>
+            <button type="button" class="mdl-button" disabled>Disabled action</button>
+        </div>
+    </dialog>
 
     <!-- FIXME:Due to unknow reason, these script doesn't work within the card_list.js file, so I transfer them to here  -->
     <!-- Very likely some issues within the meteor -->
     <script type="text/javascript">
+
+        // This is the helper function for 
+        (function () {
+            'use strict';
+            var dialogButton = document.querySelector('#enlarge_button');
+            var dialog = document.querySelector('#dialog');
+            if (!dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+            }
+            dialogButton.addEventListener('click', function () {
+                dialog.showModal();
+            });
+            dialog.querySelector('button:not([disabled])')
+                .addEventListener('click', function () {
+                    dialog.close();
+                });
+        }());
+
+
         var fileInputTextDiv = document.getElementById('file_input_text_div');
         var fileInput = document.getElementById('file_input_file');
         var fileInputText = document.getElementById('file_input_text');
@@ -153,11 +189,18 @@
             }
         }
 
-     
         document.getElementById("file_input_file").onchange = function () {
-            document.getElementById("upload_icon").innerHTML="<img src=\"images/all_done.png\">";
-        };
-        
+            document.getElementById("upload_icon").innerHTML = "<img src=\"images/all_done.png\">";
+            document.getElementById("upload_text").innerHTML = "<strong>图片已上传</strong>";
+
+            // use to enable the enlarge btn after recieve an image
+            var enlarge_button = document.getElementById('enlarge_button');
+            enlarge_button.removeAttribute("disabled");
+            componentHandler.upgradeElement(enlarge_button);
+
+            document.getElementById("enlarge_button_text").innerHTML = "点我放大图片！";
+        }
+
     </script>
 
 </template>
