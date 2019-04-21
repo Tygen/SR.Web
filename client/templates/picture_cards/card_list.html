@@ -27,7 +27,7 @@
             <div class="file_input">
                 <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                     <i class="material-icons">add</i>
-                    <input id="file_input_file" class="none" style="display: none" type="file" accept="image/*" />
+                    <input id="file_input_file" name="file_input_file" style="display: none" type="file" accept="image/*" />
                 </label>
             </div>
 
@@ -65,11 +65,11 @@
 
         <!-- place reserved for  meteor's template system-->
         <!-- {{> picCardList}} -->
-        <!-- <div class="pictures">
-                        {{#each pictures}} 
-                            {{> cardItem}} 
-                        {{/each}}
-                    </div> -->
+        <div class="pictures">
+            {{#each pictures}} 
+                {{> cardItem}} 
+            {{/each}}
+        </div>
 
 
         <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
@@ -126,16 +126,43 @@
         <h3 class="mdl-dialog__title">放大参数</h3>
 
         <div class="mdl-dialog__content">
-            <p>
-                针对不同的放大风格我们采用了不同的卷积神经网络设计，更多信息请参见这里<br>
-                过高的放大倍数可能带来不可避免的图像失真，请根据图像自身情况选择合适的放大倍数
+            <!-- radio button uses name attribute to define group -->
+            <p >
+                <!-- TODO:insert some explantaion text here! -->
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="enlarge-2x">
+                   
+                    <input type="radio" id="enlarge-2x" class="mdl-radio__button" name="scale_factor" value="1" checked>
+                    <span class="mdl-radio__label">放大2倍</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="enlarge-4x">
+                    <input type="radio" id="enlarge-4x" class="mdl-radio__button" name="scale_factor" value="2">
+                    <span class="mdl-radio__label">放大4倍</span>
+                </label> 
+
+                <br>
+            </p>
+            <p >
+                <!-- TODO:insert some explantaion text here! -->
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+                    <span class="mdl-radio__label">对照片进行放大</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
+                    <span class="mdl-radio__label">对绘画进行放大</span>
+                </label>  
             </p>
         </div>
         <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button">Close</button>
-            <button type="button" class="mdl-button" disabled>Disabled action</button>
+            <button type="button" id="submit_btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">开始放大</button>
         </div>
     </dialog>
+
+    <!-- pop out notification -->
+    <div id="upload_success" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+    </div>
 
     <!-- FIXME:Due to unknow reason, these script doesn't work within the card_list.js file, so I transfer them to here  -->
     <!-- Very likely some issues within the meteor -->
@@ -152,6 +179,8 @@
             dialogButton.addEventListener('click', function () {
                 dialog.showModal();
             });
+
+            // Used for auto close the dialog after click any enabled button
             dialog.querySelector('button:not([disabled])')
                 .addEventListener('click', function () {
                     dialog.close();

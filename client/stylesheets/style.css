@@ -516,10 +516,10 @@ box-sizing: border-box;
 /* CSS for the upload card loacted on the cardList page */
 
 /* CSS for  the mdl-dialog loacated on cardList page */
-.mdl-dialog {
+/* .mdl-dialog {
     border: none;
     box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
-    width: 400px; }
+    width: 520px; }
     .mdl-dialog__title {
       padding: 24px 24px 0;
       margin: 0;
@@ -552,4 +552,4 @@ box-sizing: border-box;
           text-align: right; }
     .mdl-dialog__content {
       padding: 20px 24px 24px 24px;
-      color: rgba(0,0,0, 0.54); }
+      color: rgba(0,0,0, 0.54); } */
