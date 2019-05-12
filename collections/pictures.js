@@ -14,3 +14,5 @@ Pictures.allow({
     insert: function () { return true; },
     download: function () { return true; }
 });
+
+Images = new Mongo.Collection('images');
